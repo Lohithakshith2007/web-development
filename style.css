@@ -1,0 +1,12 @@
+.btn {
+  transition: all 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.8);
+}
+
+/* This class hides whatever element it is attached to */
+.hidden {
+  display: none;
+}

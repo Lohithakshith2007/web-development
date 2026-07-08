@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Form Validation Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fd;
+            color: #333;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 24px;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #1a2a56;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccd0db;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #4d8fff;
+            box-shadow: 0 0 0 3px rgba(77, 143, 255, 0.15);
+        }
+
+        .error-message {
+            color: #c62828;
+            font-size: 0.94rem;
+            margin-top: 6px;
+            min-height: 1.1em;
+        }
+
+        .success {
+            color: #1d7a15;
+            font-weight: 700;
+            margin-top: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4d8fff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #3a6be0;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Review Form Validation</h1>
+        <p>Try submitting the form and fix any errors shown below.</p>
+
+        <form id="signupForm" novalidate>
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required />
+                <div class="error-message" id="nameError"></div>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="example@mail.com" required />
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="At least 8 characters" minlength="8"
+                    required />
+                <div class="error-message" id="passwordError"></div>
+            </div>
+
+            <div class="field">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="18" min="18" max="100" required />
+                <div class="error-message" id="ageError"></div>
+            </div>
+
+            <div class="field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="\d{3}-\d{3}-\d{4}"
+                    required />
+                <div class="error-message" id="phoneError"></div>
+            </div>
+
+            <div class="field">
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                    <option value="">Select your country</option>
+                    <option value="USA">USA</option>
+                    <option value="India">India</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Canada">Canada</option>
+                </select>
+                <div class="error-message" id="countryError"></div>
+            </div>
+
+            <div class="field">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="agree" name="agree" />
+                    I agree to the terms and conditions
+                </label>
+                <div class="error-message" id="agreeError"></div>
+            </div>
+
+            <button type="submit">Submit</button>
+            <div class="success" id="formSuccess"></div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('signupForm');
+        const successMessage = document.getElementById('formSuccess');
+
+        function showError(fieldId, message) {
+            document.getElementById(fieldId + 'Error').textContent = message;
+        }
+
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(el => el.textContent = '');
+            successMessage.textContent = '';
+        }
+
+        function validateForm() {
+            clearErrors();
+            let isValid = true;
+
+            const name = form.name.value.trim();
+            if (name.length < 2) {
+                showError('name', 'Please enter your name with at least 2 letters.');
+                isValid = false;
+            }
+
+            const email = form.email.value.trim();
+            if (!email) {
+                showError('email', 'Email is required.');
+                isValid = false;
+            } else if (!form.email.checkValidity()) {
+                showError('email', 'Please enter a valid email address.');
+                isValid = false;
+            }
+
+            const password = form.password.value;
+            if (password.length < 8) {
+                showError('password', 'Password must be at least 8 characters long.');
+                isValid = false;
+            }
+
+            const age = Number(form.age.value);
+            if (!form.age.value) {
+                showError('age', 'Age is required.');
+                isValid = false;
+            } else if (age < 18 || age > 100) {
+                showError('age', 'Age must be between 18 and 100.');
+                isValid = false;
+            }
+
+            const phone = form.phone.value.trim();
+            const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+            if (!phone) {
+                showError('phone', 'Phone number is required.');
+                isValid = false;
+            } else if (!phonePattern.test(phone)) {
+                showError('phone', 'Phone must match 123-456-7890.');
+                isValid = false;
+            }
+
+            if (!form.country.value) {
+                showError('country', 'Please select your country.');
+                isValid = false;
+            }
+
+            if (!form.agree.checked) {
+                showError('agree', 'You must agree before submitting.');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            if (validateForm()) {
+                successMessage.textContent = 'Form completed successfully!';
+                // Here you can send data to a server or reset the form.
+                // form.reset();
+            }
+        });
+    </script>
+</body>
+
+</html>

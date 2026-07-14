@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            background-color: #f0f0f0;
+        }
+
+        .profile-card {
+            display: flex;
+            background-color: #000;
+            height: 10%;
+            margin: 1.5rem;
+            padding: 2rem;
+            justify-content: center;
+            border-radius: 50px;
+        }
+
+        img {
+            position: relative;
+            padding: 7%;
+            /* new prop */
+            object-fit: cover;
+            /* responsive test */
+            height: 20rem;
+            width: 20rem;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+
+        .name {
+            color: #fff;
+            text-transform: capitalize;
+            font-size: 2.5rem;
+        }
+
+        .details {
+            margin: 2rem 0 2rem 0.5rem;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .details p {
+            text-align: justify;
+            text-justify: inter-word;
+            margin: 3rem 4rem 0 0;
+            line-height: 1.5;
+        }
+
+        .skills-container {
+            color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 2rem 4rem 0 0;
+        }
+
+        /* Base button styling for both links */
+
+        .buttons-container{
+            display: flex;
+            gap: 2rem;
+            margin: 3rem 4rem 0 0;
+        }
+
+        .connectbtn,
+        .showworkbtn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: ;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .connectbtn {
+            background-color: white;
+            color: black;
+            border: 1px solid white;
+        }
+
+        .connectbtn:hover {
+            background-color: #ddd;
+            border-color: #ddd;
+        }
+
+        .showworkbtn {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .showworkbtn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-card">
+        <img src="my photo.jpeg" alt="profilepic">
+        <div class="details">
+            <h1 class="name">hi, i'm gade lohithakshith</h1>
+            <p class="desc"><b>Full-Stack Developer</b><br><br>
+                I'm a Full-Stack Developer passionate about building clean, efficient, and user-friendly web
+                applications. I bridge the gap between frontend aesthetics and backend functionality, handling
+                everything from designing intuitive user interfaces to structuring robust databases.</p>
+            <div class="skills-container">
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Django</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">SQL/NoSQL</span>
+                <span class="skill-badge">Git</span>
+            </div>
+            <div class="buttons-container">
+                <a class="connectbtn" href="https://www.linkedin.com/in/lohithakshith-gade-601aa1385/">let's connect</a>
+                <a class="showworkbtn" href="https://github.com/Lohithakshith2007">View my work</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,12 +1,47 @@
-.btn {
-  transition: all 0.2s ease;
+/* 1. Set up the parent grid container */
+.container {
+  display: grid;
+  
+  /* Create 3 columns: Sidebar takes 1 part, Main takes 3 parts */
+  grid-template-columns: 1fr 3fr;
+  
+  /* Create rows: Header is 80px, Main/Sidebar scales, Footer is 60px */
+  grid-template-rows: 80px auto 60px;
+  
+  /* Space out the items cleanly */
+  gap: 15px; 
+  min-height: 100vh;
 }
 
-.btn:active {
-  transform: scale(0.8);
+/* 2. Position the child items on the grid lines */
+
+.header {
+  /* Start at column line 1, go all the way to the end line (-1) */
+  grid-column: 1 / -1; 
+  grid-row: 1;
 }
 
-/* This class hides whatever element it is attached to */
-.hidden {
-  display: none;
+.sidebar {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.main {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.footer {
+  /* Span all columns at the very bottom row */
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+/* Decorative styling just to see it work */
+.item {
+  background-color: #3498db;
+  color: white;
+  padding: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
 }

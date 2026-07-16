@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. START: A simple array of player scores
+        let scores = [45, 80, 12, 95, 60];
+
+        // 2. MODIFYING (Mutating) the array
+        scores.push(100);       // Adds 100 to the end -> [45, 80, 12, 95, 60, 100]
+        scores.unshift(25);    // Adds 25 to the front -> [25, 45, 80, 12, 95, 60, 100]
+        scores.pop();          // Removes the last item (100)
+        scores.shift();        // Removes the first item (25)
+
+        // 3. PROCESSING & TRANSFORMING (The heavy hitters)
+        // Let's filter out failing scores (< 50) and give a +5 bonus to the passing ones
+        let bonusScores = scores
+            .filter(score => score >= 50)  // Keeps only [80, 95, 60]
+            .map(score => score + 5);      // Adds 5 -> [85, 100, 65]
+
+        // 4. AGGREGATING (Reducing to a single value)
+        // Let's add all the bonus scores together to get a team total
+        let totalScore = bonusScores.reduce((sum, score) => sum + score, 0); // 85 + 100 + 65 = 250
+
+        // 5. SEARCHING & CHECKING
+        let hasPerfectScore = bonusScores.includes(100); // true
+        let firstHighIndex = bonusScores.findIndex(score => score > 90); // 1 (index of 100)
+        let highIndexValue = bonusScores.find(score => score > 90); // 100
+
+        // 6. ORDERING
+        bonusScores.sort((a, b) => a - b); // Sorts numbers ascending -> [65, 85, 100]---------doubt
+        bonusScores.reverse();             // Flips it -> [100, 85, 65]
+
+        // 7. OUTPUT
+        console.log("Final Processed Scores:", bonusScores);
+        console.log("Team Total:", totalScore);
+        console.log("Any 100s?", hasPerfectScore);
+    </script>
+</body>
+
+</html>

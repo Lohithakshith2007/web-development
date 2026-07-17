@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button id="load-btn">Load Items</button>
+        <ul id="item-list"></ul>
+    </div>
+    <script>
+        // 1. Your data (could come from an API)
+        const items = ['Apple', 'Banana', 'Orange', 'Mango'];
+
+        // 2. Get references to the HTML elements
+        const button = document.getElementById('load-btn');
+        const list = document.getElementById('item-list');
+
+        // 3. Define the rendering function
+        function renderList() {
+            // Clear any existing content first
+            list.innerHTML = '';
+
+            // Loop through the data and create HTML for each item
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li); // Inject the new element into the DOM
+            });
+        }
+
+        // 4. Trigger the render when the button is clicked
+        button.addEventListener('click', renderList);
+    </script>
+</body>
+
+</html>

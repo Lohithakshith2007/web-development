@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. Our starting data: A shopping cart
+        const shoppingCart = [
+            { name: "Laptop", price: 1000, onSale: false },
+            { name: "Headphones", price: 150, onSale: true },
+            { name: "Keyboard", price: 80, onSale: true },
+            { name: "Monitor", price: 300, onSale: false },
+        ];
+
+        // 2. FILTER: Keep only the items that are on sale
+        const saleItems = shoppingCart.filter(item => item.onSale);
+        // Result: [{ name: "Headphones", price: 150... }, { name: "Keyboard", price: 80... }]
+
+        // 3. MAP: Apply a 10% discount to the price of those sale items
+        const discountedPrices = saleItems.map(item => item.price * 0.9);
+        // Result: [135, 72] (10% off of 150 and 80)
+
+        // 4. REDUCE: Sum up the discounted prices to get the final total
+        const totalBill = discountedPrices.reduce((accumulator, currentPrice) => {
+            return accumulator + currentPrice;
+        }, 0); // <-- 0 is the starting value for the accumulator
+
+        console.log("the total bill value is: "+totalBill); // Output: 207
+    </script>
+</body>
+
+</html>

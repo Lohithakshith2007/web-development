@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+
+        /* EXERCISE: Button Click & Event Flow
+            * CONCEPTS INCLUDED:
+            * - Closures: Uses a private inner function to maintain a secure 'like' counter.
+            * - Callbacks: Passes a function as an argument to delay/control execution.
+            * - Higher-Order Functions: A function that takes/returns other functions to throttle inputs.
+            * - Event Bubbling: Demonstrates how a click on a child button travels up to its parent card.
+        */
+        
+        .card {
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- A card parent containing a button child -->
+    <div class="card" id="cardContainer">
+        <h3>Cool Post</h3>
+        <button class="btn" id="likeBtn">Like</button>
+    </div>
+
+    <script>
+        // 1. CLOSURE: This function "remembers" its own private counter variable.
+        function createCounter() {
+            let count = 0; // Private variable hidden from the outside world
+
+            return function () {
+                count++; // It remembers and updates 'count' every time it's called
+                return count;
+            };
+        }
+        const trackLikes = createCounter();
+
+
+        // 2. HIGHER-ORDER FUNCTION: Takes a callback and runs it only once a second.
+        // 3. CALLBACK: 'callback' is a function passed as an argument.
+        function throttle(callback, delay) {
+            let lastTime = 0;
+            return function (...args) {
+                const now = new Date().getTime();
+                if (now - lastTime >= delay) {
+                    lastTime = now;
+                    callback(...args); // Executing the callback function
+                } else {
+                    console.log("Too fast! Click ignored.");
+                }
+            };
+        }
+
+
+        // Putting them together:
+        const handleLikeClick = throttle(() => {
+            const currentLikes = trackLikes(); // Using the closure
+            console.log(`Button clicked! Total Likes: ${currentLikes}`);
+        }, 1000);
+
+
+        // Attach the event to the button
+        document.getElementById('likeBtn').addEventListener('click', handleLikeClick);
+
+
+        // 4. EVENT BUBBLING: Clicking the button triggers the button's event, 
+        // but the click "bubbles up" to the parent card as well!
+        document.getElementById('cardContainer').addEventListener('click', () => {
+            console.log("Card container noticed a click inside it!");
+        });
+    </script>
+</body>
+
+</html>

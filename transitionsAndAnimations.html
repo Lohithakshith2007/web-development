@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Learning Lab</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #0d1117;
+      font-family: sans-serif;
+    }
+
+    /* THE BUTTON */
+    .magic-btn {
+      position: relative;
+      padding: 15px 35px;
+      font-size: 18px;
+      color: #fff;
+      background: #238636;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      
+      /* 1. TRANSITION: Smoothly blends background color changes over 0.3 seconds */
+      transition: all 0.3s ease;
+    }
+
+    /* 2. PSEUDO-ELEMENT (::before): Creates a hidden sliding shine effect */
+    .magic-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%; /* Hidden off-screen to the left */
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      
+      /* 1. TRANSITION: Smoothly slides the shine when 'left' changes */
+      transition: left 0.5s ease;
+    }
+
+    /* 2. PSEUDO-ELEMENT (::after): Adds a small notification dot */
+    .magic-btn::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      background: #ff453a;
+      border-radius: 50%;
+      
+      /* 3. ANIMATION: Makes the dot pulse infinitely */
+      animation: pulse 1.5s infinite;
+    }
+
+    /* HOVER STATES */
+    .magic-btn:hover {
+      background: #2ea043; /* Changes color */
+      
+      /* 4. TRANSFORM: Makes the button slightly bigger on hover */
+      transform: scale(1.05); 
+    }
+
+    /* Triggering the ::before transition on hover */
+    .magic-btn:hover::before {
+      left: 100%; /* Slides the shine all the way to the right */
+    }
+
+    /* 3. KEYFRAMES FOR ANIMATION (The pulsing dot) */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="magic-btn">Hover Me</button>
+
+</body>
+</html>

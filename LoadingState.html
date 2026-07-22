@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      /* Simple CSS Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+    </style>
+</head>
+
+<body>
+    <button id="load-btn">Fetch Data</button>
+<div id="content">Click the button to load data.</div>
+
+<script>
+const button = document.getElementById('load-btn');
+const content = document.getElementById('content');
+
+// Helper function to simulate fetching data from an API
+function mockApiCall() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('🎉 Data loaded successfully!');
+    }, 2000); // 2-second delay
+  });
+}
+
+button.addEventListener('click', async () => {
+  // 1. START LOADING STATE
+  button.disabled = true; // Prevent double clicks
+  content.innerHTML = '<span class="spinner"></span> Loading...';
+
+  try {
+    // 2. PERFORM ASYNC OPERATION
+    const data = await mockApiCall();
+
+    // 3. SUCCESS STATE
+    content.textContent = data;
+  } catch (error) {
+    // 4. ERROR STATE
+    content.textContent = 'Failed to load data. Please try again.';
+  } finally {
+    // 5. RESET BUTTON
+    button.disabled = false;
+  }
+});
+</script>
+</body>
+
+</html>

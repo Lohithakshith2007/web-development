@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Test Starter Code:
+        function createLimitedButton(actionFunction, maxClicks) {
+            let likescount=0;
+
+            return  function(){
+                likescount++;
+                if(likescount<=maxClicks){
+                    actionFunction();
+                    console.log(`${maxClicks-likescount} likes left`);
+                }else{
+                    console.log("Action blocked! Maximum clicks reached.");
+                    
+                }
+            }
+        }
+
+        // Helper callback function
+        function sendNotification() {
+            console.log(" Notification sent to server!");
+        }
+
+        // Create a button instance limited to 2 clicks
+        const clickSubmit = createLimitedButton(sendNotification, 2);
+
+        clickSubmit();
+        // Output: " Notification sent to server! (1 clicks left)"
+
+        clickSubmit();
+        // Output: " Notification sent to server! (0 clicks left)"
+
+        clickSubmit();
+        // Output: "Action blocked! Maximum clicks reached."
+    </script>
+</body>
+
+</html>

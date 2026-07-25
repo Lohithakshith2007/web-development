@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. CREATING THE PROMISE
+        const checkInventory = new Promise((resolve, reject) => {
+            const itemInStock = true; // Try changing this to false to see the error path!
+
+            setTimeout(() => {
+                if (itemInStock) {
+                    resolve("Item is available! Processing order..."); // Success!
+                } else {
+                    reject("Out of stock! Order cancelled.");          // Failure!
+                }
+            }, 2000); // Simulates a 2-second delay
+        });
+
+        // 2. CONSUMING THE PROMISE WITH .then() AND .catch()
+        console.log("Checking stock...");
+
+        checkInventory
+            .then((successMessage) => {
+                // Runs ONLY if resolve() was called inside the Promise
+                console.log("SUCCESS:", successMessage);
+            })
+            .catch((errorMessage) => {
+                // Runs ONLY if reject() was called inside the Promise
+                console.log("ERROR:", errorMessage);
+            });
+    </script>
+</body>
+
+</html>

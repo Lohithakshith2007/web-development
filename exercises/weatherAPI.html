@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Weather App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .weather-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #74b9ff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #weatherDisplay {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        #cityName {
+            font-size: 22px;
+            color: #222;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="weather-card">
+        <h2>Weather Finder</h2>
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Enter city name...">
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <div id="weatherDisplay" class="hidden">
+            <h3 id="cityName"></h3>
+            <p id="temp"></p>
+            <p id="description"></p>
+            <p id="humidity"></p>
+        </div>
+    </div>
+    <script>
+        const apiKey = "2162f5d5399b9a5e8c3ff64204df14cf"; // Replace with your OpenWeatherMap API key
+        const searchBtn = document.getElementById("searchBtn");
+        const cityInput = document.getElementById("cityInput");
+
+        const cityNameDisplay = document.getElementById("cityName");
+        const tempDisplay = document.getElementById("temp");
+        const descDisplay = document.getElementById("description");
+        const humidityDisplay = document.getElementById("humidity");
+        const weatherDisplay = document.getElementById("weatherDisplay");
+
+        searchBtn.addEventListener("click", () => {
+            const city = cityInput.value.trim();
+            if (city !== "") {
+                fetchWeather(city);
+            }
+        });
+
+        async function fetchWeather(city) {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error("City not found");
+                }
+
+                const data = await response.json();
+                displayWeather(data);
+            } catch (error) {
+                alert(error.message);
+                weatherDisplay.classList.add("hidden");
+            }
+        }
+
+        function displayWeather(data) {
+            cityNameDisplay.textContent = `${data.name}, ${data.sys.country}`;
+            tempDisplay.textContent = `Temperature: ${Math.round(data.main.temp)}°C`;
+            descDisplay.textContent = `Condition: ${data.weather[0].description}`;
+            humidityDisplay.textContent = `Humidity: ${data.main.humidity}%`;
+
+            // Reveal the weather card info section
+            weatherDisplay.classList.remove("hidden");
+        }
+    </script>
+
+</body>
+
+</html>

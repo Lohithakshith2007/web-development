@@ -24,12 +24,15 @@
             cursor: pointer;
         }
 
+        button:disabled{
+            cursor: not-allowed;
+        }
+
         .error {
             color: red;
         }
     </style>
 </head>
-
 <body>
 
     <h1>💡 Daily Advice Generator</h1>
@@ -43,6 +46,10 @@
 
 
         async function fetchAdvice() {
+
+            //disabling the button while fetching 
+            btn.disabled = true;
+
             // 1. Show UI Loading state
             advtxt.innerText = "Fetching new advice...";
 
@@ -63,12 +70,15 @@
                 // The API returns an object like: { slip: { id: 1, advice: "Remember that..." } }
                 // 7. Render: Display data.slip.advice inside adviceText.innerText
                 advtxt.innerText=result.slip.advice;
+                btn.disabled = false;
 
             } catch (error) {
                 advtxt.innerText=`something is wrong ${error}`;
-                console.log(error);
-                
-            }
+                console.log(error);                
+            }finally {
+            // ALWAYS re-enables the button, regardless of success or failure!
+            btn.disabled = false;
+        }
         }
 
         btn.addEventListener('click',fetchAdvice);

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Random User Generator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            background-color: #f4f4f9;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .details {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 16px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 6px;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <img id="user-img" class="avatar" src="" alt="Profile Picture">
+        <div id="user-name" class="name">Click button to generate</div>
+        <div id="user-email" class="details">email@example.com</div>
+        <div id="user-location" class="details">City, Country</div>
+        <button id="generate-btn">Generate User</button>
+    </div>
+
+    <script>
+
+        const img = document.getElementById('user-img');
+        const username = document.getElementById('user-name');
+        const mail = document.getElementById('user-email');
+        const userlocation = document.getElementById('user-location');
+        const generateBtn = document.getElementById('generate-btn');
+
+        async function fetchUser() {
+
+            generateBtn.disabled = true;
+            username.innerText = "Loading user...";
+
+            try {
+
+                const response = await fetch('https://randomuser.me/api/');
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user");
+                }
+
+                const data = await response.json();
+                const user = data.results[0];
+
+                img.src = user.picture.medium;
+                username.innerText = `${user.name.first} ${user.name.last}`;
+                mail.innerText = user.email;
+                userlocation.innerText = `${user.location.city}, ${user.location.country}`
+
+            } catch (error) {
+                console.log(error);
+            } finally {
+                generateBtn.disabled = false;
+            }
+        }
+
+        generateBtn.addEventListener('click', fetchUser);
+
+    </script>
+
+</body>
+
+</html>

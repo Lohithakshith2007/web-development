@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Tabs Component</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tab-container {
+            width: 450px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Tab Buttons Header */
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            background-color: #f8f9fa;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.2s ease;
+        }
+
+        /* Active State for Buttons */
+        .tab-btn.active {
+            color: #007bff;
+            font-weight: bold;
+            border-bottom: 3px solid #007bff;
+            background-color: white;
+        }
+
+        /* Tab Content Area */
+        .tab-content-container {
+            padding: 20px;
+        }
+
+        .tab-content {
+            display: none;
+            /* Hidden by default */
+        }
+
+        /* Active State for Content Panels */
+        .tab-content.active {
+            display: block;
+            /* Shown when active */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tab-container">
+        <!-- Navigation Buttons -->
+        <div id="tab-buttons" class="tab-buttons">
+            <button class="tab-btn active" data-tab="tab-1">Profile</button>
+            <button class="tab-btn" data-tab="tab-2">Settings</button>
+            <button class="tab-btn" data-tab="tab-3">Notifications</button>
+        </div>
+
+        <!-- Content Panels -->
+        <div class="tab-content-container">
+            <div id="tab-1" class="tab-content active">
+                <h3>User Profile</h3>
+                <p>Manage your personal info, avatar, and bio here.</p>
+            </div>
+
+            <div id="tab-2" class="tab-content">
+                <h3>Account Settings</h3>
+                <p>Change your password, email preferences, and privacy parameters.</p>
+            </div>
+
+            <div id="tab-3" class="tab-content">
+                <h3>Notification Center</h3>
+                <p>Choose what alerts you want to receive via email or push notification.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+
+                const targetId = btn.dataset.tab;
+                document.getElementById(targetId).classList.add('active');
+            })
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>

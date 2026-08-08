@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pokédex Card Generator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111827;
+      color: #f9fafb;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #f87171;
+    }
+
+    /* Search Controls */
+    .search-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      background-color: #1f2937;
+      color: white;
+      outline: none;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #ef4444;
+      color: white;
+      transition: opacity 0.2s;
+    }
+
+    .btn-secondary {
+      background-color: #3b82f6;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Card Layout */
+    .poke-card {
+      background-color: #1f2937;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      border: 2px solid #374151;
+      display: none;
+      /* Hidden until loaded */
+    }
+
+    .poke-img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.5));
+    }
+
+    .poke-name {
+      text-transform: capitalize;
+      font-size: 1.6rem;
+      margin-top: 10px;
+    }
+
+    .poke-id {
+      color: #9ca3af;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    /* Type Badges */
+    .types-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .type-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color: #374151;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background-color: #111827;
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      text-transform: uppercase;
+    }
+
+    .stat-val {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #60a5fa;
+    }
+
+    .status-msg {
+      text-align: center;
+      color: #9ca3af;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Pokédex Explorer</h1>
+
+    <div class="search-box">
+      <input type="text" id="poke-input" placeholder="Name or ID (e.g. pikachu, 25)..." />
+      <button id="search-btn" class="btn">Search</button>
+      <button id="random-btn" class="btn btn-secondary">🎲</button>
+    </div>
+
+    <div id="status-msg" class="status-msg">Search a Pokémon or click 🎲 for a random one!</div>
+
+    <!-- Pokémon Card -->
+    <div id="poke-card" class="poke-card">
+      <img id="poke-img" class="poke-img" src="" alt="Pokemon" />
+      <h2 id="poke-name" class="poke-name">Pikachu</h2>
+      <p id="poke-id" class="poke-id">#025</p>
+
+      <div id="types-container" class="types-container">
+        <!-- Type badges will be injected here -->
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">HP</div>
+          <div id="hp-val" class="stat-val">35</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Attack</div>
+          <div id="atk-val" class="stat-val">55</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Defense</div>
+          <div id="def-val" class="stat-val">40</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Speed</div>
+          <div id="spd-val" class="stat-val">90</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Controls & Messaging
+    const pokeInput = document.getElementById('poke-input');
+    const searchBtn = document.getElementById('search-btn');
+    const randomBtn = document.getElementById('random-btn');
+    const statusMsg = document.getElementById('status-msg');
+
+    // Card & Details
+    const pokeCard = document.getElementById('poke-card');
+    const pokeImg = document.getElementById('poke-img');
+    const pokeName = document.getElementById('poke-name');
+    const pokeId = document.getElementById('poke-id');
+    const typesContainer = document.getElementById('types-container');
+
+    // Stats
+    const hpVal = document.getElementById('hp-val');
+    const atkVal = document.getElementById('atk-val');
+    const defVal = document.getElementById('def-val');
+    const spdVal = document.getElementById('spd-val');
+
+
+    async function getPokemonData(query) {
+
+      try {
+
+        pokeCard.style.display = 'none';
+        statusMsg.textContent = 'Loading...';
+
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+
+        if (!response.ok) {
+          throw new Error('Pokemon not found. Please try again.')
+        }
+
+        const data = await response.json();
+
+        pokeImg.src = data.sprites.other['official-artwork'].front_default;
+        pokeName.textContent = data.name
+        pokeId.textContent = `#${String(data.id).padStart(3, '0')}`;
+        hpVal.textContent = data.stats[0].base_stat;
+        atkVal.textContent = data.stats[1].base_stat;
+        defVal.textContent = data.stats[2].base_stat;
+        spdVal.textContent = data.stats[5].base_stat;
+
+        // 1. Clear any leftover badges from the previous search
+        typesContainer.innerHTML = '';
+
+        // 2. Loop through the types array from the API
+        data.types.forEach(item => {
+          // Create a new <span> element in memory
+          const badge = document.createElement('span');
+
+          // Add the CSS class defined in your <style> tag
+          badge.classList.add('type-badge');
+
+          // Set the text to the type name (e.g., "electric" or "fire")
+          badge.textContent = item.type.name;
+
+          // Append the newly created <span> inside <div id="types-container">
+          typesContainer.appendChild(badge);
+        });
+
+        statusMsg.textContent = ''
+        pokeCard.style.display = 'block'
+
+      } catch (error) {
+        statusMsg.textContent = error.message;
+        console.error(error);
+      }
+    }
+
+    searchBtn.addEventListener('click', () => {
+      const query = pokeInput.value.trim().toLowerCase();
+      if (!query) return;
+      getPokemonData(query);
+    });
+
+    randomBtn.addEventListener('click', () => {
+      const randomId = Math.floor(Math.random() * 898) + 1;
+      getPokemonData(randomId);
+    });
+  </script>
+
+</body>
+
+</html>

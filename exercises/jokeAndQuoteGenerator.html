@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async Dashboard Exercise</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background-color: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      width: 400px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #38bdf8;
+      color: #0f172a;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background 0.2s;
+    }
+
+    button:disabled{
+      cursor: not-allowed;
+    }
+
+    button:hover {
+      background-color: #0ea5e9;
+    }
+
+    .section {
+      margin-bottom: 1.5rem;
+      min-height: 60px;
+    }
+
+    .error {
+      color: #f87171;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Async Dashboard</h2>
+
+    <!-- Quote Section -->
+    <div class="section">
+      <h3>Inspirational Quote</h3>
+      <p id="quote-text">Click the button to load a quote...</p>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #334155;">
+
+    <!-- Joke Section -->
+    <div class="section" style="margin-top: 1.5rem;">
+      <h3>Random Joke</h3>
+      <p id="joke-text">Click the button to load a joke...</p>
+    </div>
+
+    <button id="load-btn">Fetch Data</button>
+  </div>
+
+  <script>
+
+    // --- DOM SELECTION (Already Done for You) ---
+    const loadBtn = document.getElementById('load-btn');
+    const quoteText = document.getElementById('quote-text');
+    const jokeText = document.getElementById('joke-text');
+
+    // --- PUBLIC API ENDPOINTS---
+    const QUOTE_API = 'https://dummyjson.com/quotes/random';
+    const JOKE_API = 'https://official-joke-api.appspot.com/random_joke';
+
+    // async function fro fetching data
+    async function getData() {
+      quoteText.innerHTML = 'loading a quote';
+      jokeText.innerHTML = 'loading a joke';
+      quoteText.classList.remove('error');
+      jokeText.classList.remove('error');
+      loadBtn.disabled = true;
+
+      // Wrapping everything in try/catch to handle network errors smoothly
+      try {
+        //Using Promise.all() to fetch from QUOTE_API and JOKE_API concurrently
+        const [quoteres, jokeres] = await Promise.all([
+          fetch(QUOTE_API),
+          fetch(JOKE_API)
+        ]);
+
+        // handling response error 
+        if (!quoteres.ok || !jokeres.ok) {
+          throw new Error('unable to fetch')
+        }
+
+        //Parse responses using .json()
+        const quote = await quoteres.json();
+        const joke = await jokeres.json();
+
+        //Update quoteText.textContent and jokeText.textContent with the results
+        quoteText.textContent = `"${quote.quote}" — ${quote.author}`;
+        jokeText.textContent = `${joke.setup} ... ${joke.punchline}`;
+      } catch (error) {
+        //Handling errors in the UI
+        quoteText.textContent = 'Failed to load quote.';
+        jokeText.textContent = 'Failed to load joke.';
+        quoteText.classList.add('error');
+        jokeText.classList.add('error');
+        console.log(error);
+      }finally {
+    // ALWAYS re-enable the button, whether success or error
+    loadBtn.disabled = false;
+  }
+    }
+
+    //Attaching this function to loadBtn's 'click' event listener
+    loadBtn.addEventListener('click', getData);
+
+  </script>
+</body>
+
+</html>

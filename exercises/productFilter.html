@@ -77,36 +77,48 @@
         const cardGrid = document.getElementById('card-grid');
         const searchInput = document.getElementById('search-input');
 
-        // 1. Reusable Render Function (Similar to what you just learned)
+        // 1. Clean Debounce Utility
+        function debounce(func, delay = 500) {
+            let timer;
+            return function (data) {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func(data);
+                }, delay);
+            };
+        }
+
+        // 2. Render Function
         function renderCards(items) {
             cardGrid.innerHTML = items.map(item => `
-        <div class="card">
-            <h3>${item.title}</h3>
-            <p>Category: ${item.category}</p>
-        </div>
-    `).join('');
+    <div class="card">
+        <h3>${item.title}</h3>
+        <p>Category: ${item.category}</p>
+    </div>
+  `).join('');
         }
+
+        // 3. Filter & Render Action Function
+        function handleSearch(typedText) {
+            const filteredProducts = products.filter(prod =>
+                prod.title.toLowerCase().includes(typedText)
+            );
+
+            renderCards(filteredProducts);
+        }
+
+        // 4. Wrap the Search Action
+        const debouncedSearch = debounce(handleSearch, 1000);
 
         // Initial render of all products
         renderCards(products);
 
-        // ==========================================
-        // 2. CORE LOGIC TO PRACTICE:
-        // ==========================================
-        // Listen for typing events in the search input
+        // 5. Event Listener (Clean & Instant)
         searchInput.addEventListener('input', (e) => {
-            cardGrid.innerHTML='';
-
-            // TODO: Extract what the user typed, make it lowercase
-            const typedText=e.target.value.toLowerCase();
-            
-            // TODO: Use .filter() on the 'products' array to match titles against the typed text
-            const filtered_products=products.filter(prod=>prod.title.toLowerCase().includes(typedText));
-            
-            // TODO: Call renderCards() passing the newly filtered array
-            renderCards(filtered_products);
-
+            const typedText = e.target.value.toLowerCase().trim();
+            debouncedSearch(typedText);
         });
     </script>
 </body>
+
 </html>

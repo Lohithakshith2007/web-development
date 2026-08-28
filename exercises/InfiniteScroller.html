@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Infinite Scroll Challenge</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Infinite Scroll Feed</h1>
+  <div id="feed"></div>
+
+  <script>
+    const feed = document.getElementById("feed");
+    let itemCount = 0;
+
+    // Helper function: creates cards and adds them to the page
+    function addCards(amount = 5) {
+      for (let i = 0; i < amount; i++) {
+        itemCount++;
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerText = `Post Card #${itemCount}`;
+        feed.appendChild(card);
+      }
+    }
+
+    // Loading initial 10 cards so the page can scroll
+    addCards(10);
+
+    // 1. Writing the throttle function 
+    function throttle(func, limit = 500) {
+      let isThrottled = false;
+
+      return function (...args) {
+        if (isThrottled) return;
+
+        func.apply(this,args);
+
+        isThrottled = true;
+
+        setTimeout(() => {
+          isThrottled = false;
+        }, limit);
+
+      }
+    }
+
+    // 2. Writing the scroll checker function here
+    // If true, call addCards(5)
+
+    function scrollChecker() {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        addCards(5);
+      }
+    }
+
+    // 3. Creating throttledScroll using throttle() with a 500ms limit
+    const throttledScroll = throttle(scrollChecker, 500);
+
+    // 4. Attaching throttledScroll to window scroll event listener
+    window.addEventListener('scroll', throttledScroll);
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart Button Challenge</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    #cart-status {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    #log {
+      margin-top: 20px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Product Page</h1>
+  <button id="add-to-cart-btn" class="btn">🛒 Add to Cart</button>
+  
+  <div id="cart-status">Cart Items: <span id="cart-count">0</span></div>
+  <div id="log">  </div>
+
+  <script>
+    const cartCountEl = document.getElementById("cart-count");
+    const logEl = document.getElementById("log");
+    let count = 0;
+
+    // The action function: simulates sending an item to cart backend
+    function addToCart() {
+      count++;
+      cartCountEl.innerText = count;
+      
+      const p = document.createElement("p");
+      p.innerText = `[${new Date().toLocaleTimeString()}] Item added to cart successfully!`;
+      logEl.prepend(p);
+    }
+
+    // 1. custom throttle function 
+    function throttle(func, limit = 500) {
+      let isThrottled = false;
+
+      return function (...args) {
+        if (isThrottled) return;
+
+        func.apply(this,args);
+
+        isThrottled = true;
+
+        setTimeout(() => {
+          isThrottled = false;
+        }, limit);
+
+      }
+    }
+
+    // 2. Wrap addToCart with a 2000ms (2 second) throttle limit
+    const throttledInstance=throttle(addToCart,2000);
+
+    // 3. Attach the throttled function to the button's 'click' event
+    const cartBtn=document.getElementById('add-to-cart-btn');
+    cartBtn.addEventListener('click',throttledInstance);
+
+  </script>
+</body>
+</html>

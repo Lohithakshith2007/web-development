@@ -46,10 +46,10 @@
       }
     }
 
-    // Loading initial 10 cards so the page can scroll
+    // Load initial 10 cards so the page can scroll
     addCards(10);
 
-    // 1. Writing the throttle function 
+    // 1. define the throttle function 
     function throttle(func, limit = 500) {
       let isThrottled = false;
 
@@ -67,7 +67,7 @@
       }
     }
 
-    // 2. Writing the scroll checker function here
+    // 2. scroll checker function to throttle
     // If true, call addCards(5)
 
     function scrollChecker() {
@@ -76,10 +76,10 @@
       }
     }
 
-    // 3. Creating throttledScroll using throttle() with a 500ms limit
+    // 3. Create a throttledScroll using throttle() with a 500ms limit
     const throttledScroll = throttle(scrollChecker, 500);
 
-    // 4. Attaching throttledScroll to window scroll event listener
+    // 4. Attach that throttledScroll to window scroll event listener
     window.addEventListener('scroll', throttledScroll);
 
   </script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Account Simulation</title>
+</head>
+
+<body>
+  <script>
+    
+    // Define the BankAccount class to handle user accounts and core transactions
+    class BankAccount {
+      constructor(accountholder, accountnumber, initialbalance) {
+        this.accountholder = accountholder;
+        this.accountnumber = accountnumber;
+        this.balance = initialbalance;
+      }
+
+      // Method to deposit a specified amount into the account
+      deposit(amount) {
+        this.balance += amount;
+      }
+
+      // Method to withdraw funds if sufficient balance is available
+      withdraw(amount) {
+        if (amount > this.balance) {
+          console.log("Insufficient balance");
+          return; // Exit the method to prevent withdrawal
+        }
+        this.balance -= amount;
+      }
+
+      // Method to display the current account balance in the console
+      showbalance() {
+        console.log(`${this.accountholder}'s balance is: ${this.balance}`);
+      }
+    }
+
+    // Instantiate sample bank accounts ---
+    const account1 = new BankAccount("Lohith", "ACC101", 5000);
+    const account2 = new BankAccount("Karthik", "ACC102", 10000);
+
+    // Test account operations for Lohith ---
+    account1.showbalance();
+    console.log("Depositing into Lohith's account...");
+    account1.deposit(2000);
+    account1.showbalance();
+
+    console.log("--------------------");
+
+    // Test account operations for Karthik ---
+    account2.showbalance();
+    console.log("Withdrawing from Karthik's account...");
+    account2.withdraw(11000);
+    account2.showbalance();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>basic class example</title>
+</head>
+
+<body>
+  <script>
+    // creating a class 
+    class User {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      greet() {
+        console.log(`hello! I'm ${this.name} and I'm ${this.age} years old`);
+      }
+
+      celebrateBirthday() {
+        this.age++;
+        console.log(`${this.name}'s birthday is celebrated. now his age is ${this.age}`);
+      }
+    }
+
+    // creating objects in a class 
+    const user1 = new User("lohith", 19);
+    const user2 = new User("akshay", 19);
+    const user3 = new User("sreesanth", 17);
+    const user4 = new User("karthik", 19);
+    const user5 = new User("bruce wayne", 18);
+
+    // calling a function from the defined class
+    user1.greet();
+    user2.greet();
+    user3.greet();
+    user4.greet();
+    user5.greet();
+
+    // increments the age of users
+    user1.celebrateBirthday();
+    user5.celebrateBirthday();
+
+
+  </script>
+</body>
+
+</html>

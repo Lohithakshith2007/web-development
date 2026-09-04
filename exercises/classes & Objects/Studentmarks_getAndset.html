@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // creating a class Student
+        class Student{
+            constructor(name,marks){
+                this.name=name;
+                this.marks=marks;
+            }
+
+            // getter method to get the student details
+            get getStudent(){
+                console.log(`${this.name}: ${this.marks}`);
+            }
+
+            // setter method to set the student marks
+            set SetMarks(marks){
+                if(marks<0||marks>100){
+                    console.log("marks should be between 0 and 100");
+                    return;
+                }else{
+                    this.marks=marks;
+                }
+            }
+        }
+
+        // creating objects of Student class
+        const student1=new Student("lohith",90);    
+        const student2=new Student("akshay",91);
+
+        // calling getter and setter methods
+        student1.getStudent;
+        student2.getStudent;
+
+        // setting marks for the student1
+        console.log("setting lohith's marks");
+        student1.setMarks=10;
+        student1.getStudent;
+
+        // setting marks for the student2
+        console.log("settings akshay's marks");
+        student2.setMarks=110;
+        student2.getStudent;
+    </script>
+</body>
+</html>

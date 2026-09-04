@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1. creating a class User
+        class User {
+            constructor(name) {
+                this.name = name;
+            }
+
+            // 2. Instance method (used on objects created from the class)
+            sayHello() {
+                return `Hi, my name is ${this.name}.`;
+            }
+
+            // 3. Class/Static method (used on the class itself)
+            static description() {
+                return "This is the User class.";
+            }
+        }
+
+        // 4. Create an object
+        const myUser = new User("Alice");
+
+        // 5. Use the instance method on the object
+        console.log(myUser.sayHello()); // Output: Hi, my name is Alice.
+
+        // 6. Use the class method on the class
+        console.log(User.description()); // Output: This is the User class.
+    </script>
+</body>
+
+</html>

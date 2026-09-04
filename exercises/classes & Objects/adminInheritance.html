@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        class User{
-            constructor(name,age){
+        // creating a class User
+        class User {
+            constructor(name, age) {
                 this.name = name;
                 this.age = age;
             }
 
-            greet(){
+            // method to greet the user
+            greet() {
                 console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
             }
         }
 
-        class Admin extends User{
-            constructor(name,age,role){
-                super(name,age);
+        // creating a class Admin that inherits from User
+        class Admin extends User {
+            constructor(name, age, role) {
+                super(name, age);
                 this.role = role;
             }
 
-            showRole(){
+            showRole() {
                 console.log(`I am an admin with the role of ${this.role}.`);
             }
         }
 
+        // creating an object of Admin class
         const admin1 = new Admin("Lohith", 21, "Moderator");
+
+        // calling methods from the Admin class and its parent User class
         admin1.greet(); // Output: Hello, my name is Lohith and I am 21 years old.
         admin1.showRole(); // Output: I am an admin with the role of Moderator.
     </script>
 </body>
+
 </html>

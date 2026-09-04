@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // creating a class product
+        class product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            showdetails() {
+                console.log(`Name: ${this.name}, Price: ${this.price}`);
+            }
+
+            static compareprices(p1, p2) {
+                return ` ${p1.name}- ${p1.price} and ${p2.name}- ${p2.price}`
+            }
+        }
+
+        // creating objects of product class
+        const product1 = new product("Laptop", 1000);
+        const product2 = new product("Mobile", 500);
+        const product3 = new product("Tablet", 800);
+        const product4 = new product("Monitor", 300);
+
+        // displaying the details of products
+        console.log("the products are: ");
+        product1.showdetails();
+        product2.showdetails();
+        product3.showdetails();
+        product4.showdetails();
+
+        // comparing the prices of products using static method
+        console.log(`the comparision of laptop and mobile: ${product.compareprices(product1, product2)}`);
+        console.log(`the comparision of tablet and monitor: ${product.compareprices(product3, product4)}`);
+    </script>
+</body>
+
+</html>

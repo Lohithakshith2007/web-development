@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // exercise: BankAccount exercise to understand private fields in classes
+        // 1. create a class called BankAccount with private fields for account holder and balance. 
+        // 2. Create methods to get the balance and check if the pin is correct. 
+        // 3. Create an instance of the class and test the methods.
+
+        // create a class called BankAccount with private fields for account holder and balance
+        class BankAccount {
+            #balance;
+            #pin;
+
+            constructor(accountholder, initialbalance, pin) {
+                this.accountholder = accountholder;
+                this.#balance = initialbalance;
+                this.#pin = pin;
+            }
+
+            // create a method to get the balance
+            getBalance() {
+                return this.#balance;
+            }
+
+            // create a method to check if the pin is correct
+            checkPin(pin) {
+                return this.#pin === pin;
+            }
+        }
+
+        // create an instance of the BankAccount class and test the methods
+        const account1 = new BankAccount("lohith", 100000, 5678);
+        const account2 = new BankAccount("karthik", 50000, 1234);
+        console.log("account1 holder: " + account1.accountholder); // lohith
+        console.log("account2 holder: " + account2.accountholder); // karthik
+
+        // try to access the private fields directly
+        console.log("account1 pin (directly): " + account1.pin); // undefined
+        console.log("account1 balance (directly): " + account1.balance); // undefined
+
+        // try to access the private field using the methods
+        console.log("account1 balance (via method): " + account1.getBalance()); // 100000
+        console.log("account2 balance (via method): " + account2.getBalance()); // 50000
+
+        // try to check the pin using the checkPin method
+        console.log("account1 pin (correct): " + account1.checkPin(5678)); // true
+        console.log("account1 pin (incorrect): " + account1.checkPin(4321)); // false
+    </script>
+</body>
+
+</html>

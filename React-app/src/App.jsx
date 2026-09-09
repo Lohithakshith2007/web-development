@@ -1,25 +1,21 @@
 import { useState } from 'react'
 import './App.css'
+import UserCard from './components/UserCard.jsx';
+import StudentData from './components/studentCards(props).jsx';
 
-function UserCard() {
-  const user = {
-    name: "Lohith",
-    role: "Full-Stack Developer",
-    avatarUrl: "https://via.placeholder.com/150",
-    isOnline: true
-  };
-
+function App() {
   return (
-    <div className="card-container">
-      <img src={user.avatarUrl} alt={user.name} className="avatar-img" />
-      <h2>{user.name}</h2>
-      <p style={{ color: "#666", fontWeight: "bold" }}>{user.role}</p>
+    <>
+    {/* user card exercise */}
+    {/* <UserCard/> */}
 
-      <span className={user.isOnline ? "badge online" : "badge offline"}>
-        {user.isOnline ? "Online" : "Offline"}
-      </span>
-    </div>
+    {/* student data exercise */}
+    <StudentData name="Lohith" age={21} isStudent={true} major="Computer Science" cgpa={9.5}/>
+    <StudentData name="John" age={22} isStudent={false} major="Mathematics" cgpa={8.2}/>
+    <StudentData name="Alice" age={20} isStudent={true} major="Physics" cgpa={9.0}/>
+    </>
+
   );
 }
 
-export default UserCard;
+export default App;

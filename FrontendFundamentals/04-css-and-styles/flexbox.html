@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* main flex box container */
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            align-content: stretch;
+            gap: 15px;
+            border: 2px solid #333;
+            height: 250px;
+            padding: 10px;
+        }
+
+        /* Base item styling */
+        .flex-item {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+
+        .item-1 {
+            order: 2;
+
+            flex-grow: 1;
+
+            flex-shrink: 1;
+
+            /* Sets the initial main size before free space is distributed */
+            flex-basis: auto;
+
+            /* Shorthand for grow, shrink, and basis (e.g., flex: 1 1 auto;) */
+        }
+
+        .item-2 {
+            order: 1;
+            flex-grow: 2;
+            /* Grows twice as fast as Item 1 */
+            flex-shrink: 1;
+            flex-basis: 100px;
+        }
+
+        .item-3 {
+            order: 3;
+
+            /* Overrides the container's 'align-items' property for this specific item */
+            align-self: flex-end;
+
+            /* Shorthand example */
+            flex: 0 1 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="flex-item item-1">Item 1</div>
+        <div class="flex-item item-2">Item 2</div>
+        <div class="flex-item item-3">Item 3</div>
+    </div>
+</body>
+
+</html>

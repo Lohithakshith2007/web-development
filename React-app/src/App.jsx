@@ -1,16 +1,34 @@
 import { useState } from 'react'
 import './App.css'
 import UserCard from './components/UserCard.jsx';
-import StudentData from './components/studentCards(props).jsx';
-import ProfileCard from './components/profileCard.jsx';
-function App() {
+import StudentData from './components/StudentCards(props).jsx';
+import ProfileCard from './components/ProfileCard.jsx';
+import UserDashboard from './components/dashboardExercise/userDashboard.jsx';
 
-  const user = {
+
+function App() {
+const isLoggedIn = true;
+
+const users = [
+  {
+    id: 1,
     name: "Lohith",
-    age: 21,
     role: "Full Stack Developer",
-    skills: ["HTML", "CSS", "JavaScript", "React"]
-  };
+    isOnline: true
+  },
+  {
+    id: 2,
+    name: "Rahul",
+    role: "Frontend Developer",
+    isOnline: false
+  },
+  {
+    id: 3,
+    name: "Arjun",
+    role: "Backend Developer",
+    isOnline: true
+  }
+];
 
   function handleFollow() {
     console.log("Follow button clicked");
@@ -28,10 +46,17 @@ function App() {
     <StudentData name="karthik" age={23} isStudent={false} major="Chemistry" cgpa={7.8}/> */}
 
       {/* Exercise: Profile Card */}
-      <ProfileCard
-        user={user}
+      {/* <ProfileCard
+        user={users}
         onfollow={handleFollow}
+      /> */}
+
+      <UserDashboard 
+      users={users}
+      isloggedin={isLoggedIn}
       />
+
+      
 
 
     </>

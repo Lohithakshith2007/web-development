@@ -182,3 +182,23 @@
     border-right-color: var(--border);
   }
 }
+
+.product-card {
+  border: 1px solid black;
+  /* display: block; */
+  width:fit-content;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: var(--card-bg);
+}
+
+.user-card {
+  border: 1px solid black;
+  /* display: block; */
+  width:fit-content;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: var(--card-bg);
+}

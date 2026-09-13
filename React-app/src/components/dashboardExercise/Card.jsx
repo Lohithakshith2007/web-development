@@ -1,8 +1,8 @@
 function Card({children}){
     return(
-        <>
-        {children}
-        </>
+        <div className="user-card">
+            {children}
+        </div>
     )
 }
 export default Card; 

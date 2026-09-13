@@ -1,38 +1,74 @@
 import { useState } from 'react'
 import './App.css'
 import UserCard from './components/UserCard.jsx';
+
 import StudentData from './components/StudentCards(props).jsx';
+
 import ProfileCard from './components/ProfileCard.jsx';
+
 import UserDashboard from './components/dashboardExercise/userDashboard.jsx';
+
+import ProductsDashboard from './components/productsDashboardExercise/ProductDashboard.jsx';
 
 
 function App() {
-const isLoggedIn = true;
 
-const users = [
-  {
-    id: 1,
-    name: "Lohith",
-    role: "Full Stack Developer",
-    isOnline: true
-  },
-  {
-    id: 2,
-    name: "Rahul",
-    role: "Frontend Developer",
-    isOnline: false
-  },
-  {
-    id: 3,
-    name: "Arjun",
-    role: "Backend Developer",
-    isOnline: true
-  }
-];
+  {/* User Dashboard exercise */ }
+
+  const isLoggedIn = true;
+
+  const users = [
+    {
+      id: 1,
+      name: "Lohith",
+      role: "Full Stack Developer",
+      isOnline: true
+    },
+    {
+      id: 2,
+      name: "Rahul",
+      role: "Frontend Developer",
+      isOnline: false
+    },
+    {
+      id: 3,
+      name: "Arjun",
+      role: "Backend Developer",
+      isOnline: true
+    }
+  ];
 
   function handleFollow() {
     console.log("Follow button clicked");
   }
+
+  // products Dashboard exercise
+  const isAdmin = true;
+
+  const products = [
+    {
+      id: 1,
+      name: "Laptop",
+      price: 75000,
+      inStock: true,
+      category: "Electronics"
+    },
+    {
+      id: 2,
+      name: "Headphones",
+      price: 5000,
+      inStock: false,
+      category: "Electronics"
+    },
+    {
+      id: 3,
+      name: "Keyboard",
+      price: 3000,
+      inStock: true,
+      category: "Accessories"
+    }
+  ];
+
 
   return (
     <>
@@ -51,14 +87,17 @@ const users = [
         onfollow={handleFollow}
       /> */}
 
-      <UserDashboard 
+      {/* User Dashboard exercise */}
+      {/* <UserDashboard 
       users={users}
       isloggedin={isLoggedIn}
+      /> */}
+
+      {/* Products Dashboard exercise */}
+      <ProductsDashboard
+        products={products}
+        isAdmin={isAdmin}
       />
-
-      
-
-
     </>
 
   );

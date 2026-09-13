@@ -10,6 +10,8 @@ import UserDashboard from './components/dashboardExercise/userDashboard.jsx';
 
 import ProductsDashboard from './components/productsDashboardExercise/ProductDashboard.jsx';
 
+import Counter from './components/UseStateEx.jsx'
+
 
 function App() {
 
@@ -94,10 +96,12 @@ function App() {
       /> */}
 
       {/* Products Dashboard exercise */}
-      <ProductsDashboard
+      {/* <ProductsDashboard
         products={products}
         isAdmin={isAdmin}
-      />
+      /> */}
+
+      <Counter/>
     </>
 
   );

@@ -10,7 +10,9 @@ import UserDashboard from './components/dashboardExercise/userDashboard.jsx';
 
 import ProductsDashboard from './components/productsDashboardExercise/ProductDashboard.jsx';
 
-import Counter from './components/UseStateEx.jsx'
+import Counter from './components/ReactState/UseStateEx.jsx'
+
+import Profile from './components/ReactState/InteractiveProfile.jsx'
 
 
 function App() {
@@ -101,7 +103,12 @@ function App() {
         isAdmin={isAdmin}
       /> */}
 
-      <Counter/>
+      {/* simple counter example using useState */}
+      {/* <Counter/> */}
+
+      {/* interactive profile card exercise with useState */}
+      <Profile/>
+
     </>
 
   );

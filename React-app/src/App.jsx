@@ -14,6 +14,8 @@ import Counter from './components/ReactState/UseStateEx.jsx'
 
 import Profile from './components/ReactState/InteractiveProfile.jsx'
 
+import TodoApp from './components/ReactState/TodoApp.jsx'
+
 
 function App() {
 
@@ -107,7 +109,10 @@ function App() {
       {/* <Counter/> */}
 
       {/* interactive profile card exercise with useState */}
-      <Profile/>
+      {/* <Profile/> */}
+
+      {/* Todo list exercise with useState */}
+      <TodoApp/>
 
     </>
 

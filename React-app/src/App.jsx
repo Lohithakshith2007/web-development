@@ -16,6 +16,8 @@ import Profile from './components/ReactState/InteractiveProfile.jsx'
 
 import TodoApp from './components/ReactState/TodoApp.jsx'
 
+import MiniShoppingCart from './components/ReactState/MiniShoppingCart.jsx'
+
 
 function App() {
 
@@ -112,7 +114,10 @@ function App() {
       {/* <Profile/> */}
 
       {/* Todo list exercise with useState */}
-      <TodoApp/>
+      {/* <TodoApp/> */}
+
+      {/* Mini Shopping Cart exercise */}
+      <MiniShoppingCart/>
 
     </>
 

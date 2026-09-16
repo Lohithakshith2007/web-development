@@ -18,7 +18,9 @@ import TodoApp from './components/ReactState/TodoApp.jsx'
 
 import MiniShoppingCart from './components/ReactState/MiniShoppingCart.jsx'
 
-import ControlledInput from './components/ControlledComponent.jsx'
+import ControlledInput from './components/ControlledComponents/ControlledComponent.jsx'
+
+import ContactForm from './components/ControlledComponents/ContactForm.jsx'
 
 
 function App() {
@@ -122,7 +124,10 @@ function App() {
       {/* <MiniShoppingCart/> */}
 
       {/* Controlled Component exercise */}
-      <ControlledInput/>
+      {/* <ControlledInput/> */}
+
+      {/* Contact Form exercise */}
+      <ContactForm/>
     </>
 
   );

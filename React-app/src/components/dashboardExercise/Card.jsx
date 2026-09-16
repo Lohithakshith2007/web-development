@@ -1,8 +1,4 @@
-function Card({children}){
-    return(
-        <div className="user-card">
-            {children}
-        </div>
-    )
+function Card({ children }) {
+  return <div className="user-card">{children}</div>;
 }
-export default Card; 
+export default Card;

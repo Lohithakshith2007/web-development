@@ -2,7 +2,7 @@ function UserCard() {
   const user = {
     name: "Lohith",
     role: "Full-Stack Developer",
-    isOnline: true
+    isOnline: true,
   };
 
   return (

@@ -8,10 +8,7 @@ function MiniShoppingCart() {
   ];
   const [cart, setCart] = useState([]);
 
-  const total = cart.reduce(
-    (sum, product) => sum + product.price,
-    0
-);
+  const total = cart.reduce((sum, product) => sum + product.price, 0);
 
   function AddToCart(product) {
     setCart((prevCart) => [...prevCart, product]);
@@ -43,7 +40,7 @@ function MiniShoppingCart() {
         </div>
       ))}
 
-        <h3>cart Total: {total}</h3>
+      <h3>cart Total: {total}</h3>
     </div>
   );
 }

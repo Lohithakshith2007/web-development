@@ -1,13 +1,13 @@
-import User from './User.jsx';
+import User from "./User.jsx";
 
-function UsersList({users}){
-    return(
-        <>
-        {users.map(user=>(
-            <User key={user.id} user={user} />
-        ))}
-        </>
-    )
+function UsersList({ users }) {
+  return (
+    <>
+      {users.map((user) => (
+        <User key={user.id} user={user} />
+      ))}
+    </>
+  );
 }
 
-export default UsersList; 
+export default UsersList;

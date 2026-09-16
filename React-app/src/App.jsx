@@ -1,31 +1,33 @@
-import { useState } from 'react'
-import './App.css'
-import UserCard from './components/UserCard.jsx';
+import { useState } from "react";
+import "./App.css";
+import UserCard from "./components/UserCard.jsx";
 
-import StudentData from './components/StudentCards(props).jsx';
+import StudentData from "./components/StudentCards(props).jsx";
 
-import ProfileCard from './components/ProfileCard.jsx';
+import ProfileCard from "./components/profileCard.jsx";
 
-import UserDashboard from './components/dashboardExercise/userDashboard.jsx';
+import UserDashboard from "./components/dashboardExercise/userDashboard.jsx";
 
-import ProductsDashboard from './components/productsDashboardExercise/ProductDashboard.jsx';
+import ProductsDashboard from "./components/productsDashboardExercise/ProductDashboard.jsx";
 
-import Counter from './components/ReactState/UseStateEx.jsx'
+import Counter from "./components/ReactState/UseStateEx.jsx";
 
-import Profile from './components/ReactState/InteractiveProfile.jsx'
+import Profile from "./components/ReactState/InteractiveProfile.jsx";
 
-import TodoApp from './components/ReactState/TodoApp.jsx'
+import TodoApp from "./components/ReactState/TodoApp.jsx";
 
-import MiniShoppingCart from './components/ReactState/MiniShoppingCart.jsx'
+import MiniShoppingCart from "./components/ReactState/MiniShoppingCart.jsx";
 
-import ControlledInput from './components/ControlledComponents/ControlledComponent.jsx'
+import ControlledInput from "./components/ControlledComponents/ControlledComponent.jsx";
 
-import ContactForm from './components/ControlledComponents/ContactForm.jsx'
+import ContactForm from "./components/ControlledComponents/ContactForm.jsx";
 
+import InputFilter from "./components/ControlledComponents/InputFilter.jsx";
 
 function App() {
-
-  {/* User Dashboard exercise */ }
+  {
+    /* User Dashboard exercise */
+  }
 
   const isLoggedIn = true;
 
@@ -34,20 +36,20 @@ function App() {
       id: 1,
       name: "Lohith",
       role: "Full Stack Developer",
-      isOnline: true
+      isOnline: true,
     },
     {
       id: 2,
       name: "Rahul",
       role: "Frontend Developer",
-      isOnline: false
+      isOnline: false,
     },
     {
       id: 3,
       name: "Arjun",
       role: "Backend Developer",
-      isOnline: true
-    }
+      isOnline: true,
+    },
   ];
 
   function handleFollow() {
@@ -63,24 +65,23 @@ function App() {
       name: "Laptop",
       price: 75000,
       inStock: true,
-      category: "Electronics"
+      category: "Electronics",
     },
     {
       id: 2,
       name: "Headphones",
       price: 5000,
       inStock: false,
-      category: "Electronics"
+      category: "Electronics",
     },
     {
       id: 3,
       name: "Keyboard",
       price: 3000,
       inStock: true,
-      category: "Accessories"
-    }
+      category: "Accessories",
+    },
   ];
-
 
   return (
     <>
@@ -127,9 +128,11 @@ function App() {
       {/* <ControlledInput/> */}
 
       {/* Contact Form exercise */}
-      <ContactForm/>
-    </>
+      {/* <ContactForm/> */}
 
+      {/* Input Filter exercise */}
+      <InputFilter />
+    </>
   );
 }
 

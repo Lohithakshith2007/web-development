@@ -24,6 +24,10 @@ import ContactForm from "./components/ControlledComponents/ContactForm.jsx";
 
 import InputFilter from "./components/ControlledComponents/InputFilter.jsx";
 
+import RegistrationForm from "./components/UseEffect/UseEffect.jsx";
+
+import VisibleBugDemo from "./components/UseEffect/UseEffect.jsx";
+
 function App() {
   {
     /* User Dashboard exercise */
@@ -131,7 +135,14 @@ function App() {
       {/* <ContactForm/> */}
 
       {/* Input Filter exercise */}
-      <InputFilter />
+      {/* <InputFilter /> */}
+
+      {/* Registration Form exercise */}  
+      {/* <RegistrationForm /> */}
+
+      {/* Visible useEffect Bug Demo exercise */}
+      <VisibleBugDemo />
+
     </>
   );
 }

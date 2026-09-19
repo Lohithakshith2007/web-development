@@ -28,10 +28,9 @@ import RegistrationForm from "./components/UseEffect/UseEffect.jsx";
 
 import VisibleBugDemo from "./components/UseEffect/UseEffect.jsx";
 
+import LivePageTitle from "./components/UseEffect/LivePageTitle.jsx";
+
 function App() {
-  {
-    /* User Dashboard exercise */
-  }
 
   const isLoggedIn = true;
 
@@ -141,7 +140,11 @@ function App() {
       {/* <RegistrationForm /> */}
 
       {/* Visible useEffect Bug Demo exercise */}
-      <VisibleBugDemo />
+      {/* <VisibleBugDemo /> */}
+
+      {/* Live Page Title exercise */}
+      <LivePageTitle />
+
 
     </>
   );

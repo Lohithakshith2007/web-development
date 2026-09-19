@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import Free from "./free.jsx";
+
 import UserCard from "./components/UserCard.jsx";
 
 import StudentData from "./components/StudentCards(props).jsx";
@@ -29,6 +31,8 @@ import RegistrationForm from "./components/UseEffect/UseEffect.jsx";
 import VisibleBugDemo from "./components/UseEffect/UseEffect.jsx";
 
 import LivePageTitle from "./components/UseEffect/LivePageTitle.jsx";
+
+import APIHandling from "./components/UseEffect/APIHandling.jsx";
 
 function App() {
 
@@ -88,6 +92,8 @@ function App() {
 
   return (
     <>
+      {/* <Free /> */}
+
       {/* user card exercise */}
       {/* <UserCard/> */}
 
@@ -143,8 +149,10 @@ function App() {
       {/* <VisibleBugDemo /> */}
 
       {/* Live Page Title exercise */}
-      <LivePageTitle />
+      {/* <LivePageTitle /> */}
 
+      {/* API Handling exercise */}
+      <APIHandling />
 
     </>
   );

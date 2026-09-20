@@ -34,6 +34,8 @@ import LivePageTitle from "./components/UseEffect/LivePageTitle.jsx";
 
 import APIHandling from "./components/UseEffect/APIHandling.jsx";
 
+import UserListAPI from "./components/UseEffect/UserListAPI.jsx";
+
 function App() {
 
   const isLoggedIn = true;
@@ -152,7 +154,12 @@ function App() {
       {/* <LivePageTitle /> */}
 
       {/* API Handling exercise */}
-      <APIHandling />
+      {/* <APIHandling /> */}
+
+      {/* User List API exercise */}
+      <UserListAPI />
+
+
 
     </>
   );

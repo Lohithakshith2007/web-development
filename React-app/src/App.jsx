@@ -36,8 +36,9 @@ import APIHandling from "./components/UseEffect/APIHandling.jsx";
 
 import UserListAPI from "./components/UseEffect/UserListAPI.jsx";
 
-function App() {
+import Clock from "./components/UseEffect/LiveClock/Clock.jsx";
 
+function App() {
   const isLoggedIn = true;
 
   const users = [
@@ -144,7 +145,7 @@ function App() {
       {/* Input Filter exercise */}
       {/* <InputFilter /> */}
 
-      {/* Registration Form exercise */}  
+      {/* Registration Form exercise */}
       {/* <RegistrationForm /> */}
 
       {/* Visible useEffect Bug Demo exercise */}
@@ -157,10 +158,10 @@ function App() {
       {/* <APIHandling /> */}
 
       {/* User List API exercise */}
-      <UserListAPI />
-
-
-
+      {/* <UserListAPI /> */}
+      
+      {/* Current time Exercise */}
+      <Clock/>
     </>
   );
 }

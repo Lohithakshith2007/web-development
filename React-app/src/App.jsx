@@ -38,6 +38,10 @@ import UserListAPI from "./components/UseEffect/UserListAPI.jsx";
 
 import Clock from "./components/UseEffect/LiveClock/Clock.jsx";
 
+import SearchBox from "./components/UseEffect/SearchBox.jsx";
+
+import LoginForm from "./components/UseRef/LoginForm.jsx";
+
 function App() {
   const isLoggedIn = true;
 
@@ -159,9 +163,15 @@ function App() {
 
       {/* User List API exercise */}
       {/* <UserListAPI /> */}
-      
+
       {/* Current time Exercise */}
-      <Clock/>
+      {/* <Clock/> */}
+
+      {/* SearchBox exercise */}
+      {/* <SearchBox /> */}
+
+      {/* Login Form exercise */}
+      <LoginForm />
     </>
   );
 }

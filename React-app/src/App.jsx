@@ -42,6 +42,8 @@ import SearchBox from "./components/UseEffect/SearchBox.jsx";
 
 import LoginForm from "./components/UseRef/LoginForm.jsx";
 
+import RenderCounter from "./components/UseRef/RenderCounter.jsx";
+
 function App() {
   const isLoggedIn = true;
 
@@ -171,7 +173,10 @@ function App() {
       {/* <SearchBox /> */}
 
       {/* Login Form exercise */}
-      <LoginForm />
+      {/* <LoginForm /> */}
+
+      {/* Render Counter exercise */}
+      <RenderCounter />
     </>
   );
 }

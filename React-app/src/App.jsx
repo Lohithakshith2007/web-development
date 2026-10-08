@@ -44,6 +44,8 @@ import LoginForm from "./components/UseRef/LoginForm.jsx";
 
 import RenderCounter from "./components/UseRef/RenderCounter.jsx";
 
+import StopWatch from "./components/UseRef/StopWatch.jsx";
+
 function App() {
   const isLoggedIn = true;
 
@@ -176,7 +178,12 @@ function App() {
       {/* <LoginForm /> */}
 
       {/* Render Counter exercise */}
-      <RenderCounter />
+      {/* <RenderCounter /> */}
+
+      {/* Stop Watch exercise */}
+      <StopWatch />
+
+
     </>
   );
 }

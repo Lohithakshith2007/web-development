@@ -46,6 +46,8 @@ import RenderCounter from "./components/UseRef/RenderCounter.jsx";
 
 import StopWatch from "./components/UseRef/StopWatch.jsx";
 
+import PreviousValueTracker from "./components/UseRef/PreviousValueTracker.jsx";
+
 function App() {
   const isLoggedIn = true;
 
@@ -181,7 +183,10 @@ function App() {
       {/* <RenderCounter /> */}
 
       {/* Stop Watch exercise */}
-      <StopWatch />
+      {/* <StopWatch /> */}
+
+      {/* Previous Value Tracker exercise */}
+      <PreviousValueTracker />
 
 
     </>

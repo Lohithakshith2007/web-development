@@ -48,6 +48,8 @@ import StopWatch from "./components/UseRef/StopWatch.jsx";
 
 import PreviousValueTracker from "./components/UseRef/PreviousValueTracker.jsx";
 
+import DropDown from "./components/UseRef/DropDown.jsx";
+
 function App() {
   const isLoggedIn = true;
 
@@ -186,7 +188,10 @@ function App() {
       {/* <StopWatch /> */}
 
       {/* Previous Value Tracker exercise */}
-      <PreviousValueTracker />
+      {/* <PreviousValueTracker /> */}
+
+      {/* DropDown exercise */}
+      <DropDown />
 
 
     </>
